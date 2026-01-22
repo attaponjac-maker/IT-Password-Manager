@@ -848,7 +848,6 @@
             // เปลี่ยนเป็น supabaseClient
             const { data: memberships, error } = await supabaseClient
                 .from('team_members')
-                .select(...)
                 .select('*', { count: 'exact', head: true })
                 .eq('team_id', currentTeam.id);
 
