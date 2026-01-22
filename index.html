@@ -381,10 +381,10 @@
             <div id="authAlert"></div>
             
             <!-- Tabs -->
-            <div class="auth-tabs">
-                <div class="auth-tab active" onclick="switchAuthTab('login')">เข้าสู่ระบบ</div>
-                <div class="auth-tab" onclick="switchAuthTab('register')">สมัครสมาชิก</div>
-            </div>
+        <div class="auth-tabs">
+            <div id="tab-login" class="auth-tab active" onclick="switchAuthTab('login')">เข้าสู่ระบบ</div>
+            <div id="tab-register" class="auth-tab" onclick="switchAuthTab('register')">สมัครสมาชิก</div>
+        </div>
 
             <!-- Login Form -->
             <form id="loginForm" class="hidden">
@@ -590,17 +590,24 @@
         }
 
         function switchAuthTab(tab) {
-            const tabs = document.querySelectorAll('.auth-tab');
-            tabs.forEach(t => t.classList.remove('active'));
-            event.target.classList.add('active');
-
+            // 1. ซ่อนทุก Form ก่อน
             document.getElementById('loginForm').classList.add('hidden');
             document.getElementById('registerForm').classList.add('hidden');
 
+            // 2. ลบสี Active ออกจากทุกปุ่ม (โดยใช้ Class)
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+
+            // 3. เปิด Form และใส่สี Active ให้ปุ่มที่เลือก (โดยใช้ ID)
             if (tab === 'login') {
                 document.getElementById('loginForm').classList.remove('hidden');
+                // เรียกใช้ ID ที่เราเพิ่งเติมในข้อ 1
+                const btn = document.getElementById('tab-login');
+                if(btn) btn.classList.add('active');
             } else {
                 document.getElementById('registerForm').classList.remove('hidden');
+                // เรียกใช้ ID ที่เราเพิ่งเติมในข้อ 1
+                const btn = document.getElementById('tab-register');
+                if(btn) btn.classList.add('active');
             }
         }
 
