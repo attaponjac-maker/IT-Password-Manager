@@ -10,7 +10,7 @@
     
     <!-- supabaseClient JS Client -->
     
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabaseClient-js@2/dist/umd/supabaseClient.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <!-- CryptoJS for AES Encryption -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
@@ -821,11 +821,12 @@
 
             // Update header
             const headerInfo = document.getElementById('headerInfo');
+
             headerInfo.innerHTML = `
                 🏢 <strong>${currentTeam.name}</strong> | 
                 👤 ${currentUser.email} | 
-                📋 <span class="role-badge ${userRole}">${userRole}</span>;
-
+                📋 <span class="role-badge ${userRole}">${userRole}</span>
+            `; // <--- เติม ` ปิดตรงนี้
             // Load stats
             await loadStats();
         }
@@ -843,9 +844,8 @@
                 .select('*', { count: 'exact', head: true })
                 .eq('team_id', currentTeam.id);
 
-            // Count members
-            // เปลี่ยนเป็น supabaseClient
-            const { data: memberships, error } = await supabaseClient
+            // เปลี่ยนชื่อตัวแปรรับค่าเป็น count: memberCount
+            const { count: memberCount, error: memberError } = await supabaseClient
                 .from('team_members')
                 .select('*', { count: 'exact', head: true })
                 .eq('team_id', currentTeam.id);
@@ -890,6 +890,5 @@
             document.getElementById('createTeamModal').classList.add('hidden');
             document.getElementById('mainApp').classList.add('hidden');
         } // <--- ต้องมีปีกกาปิดตัวนี้ของฟังก์ชัน
-}}
     </script> </body>
 </html>
