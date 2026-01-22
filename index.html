@@ -532,6 +532,15 @@
         if (typeof window.supabase === 'undefined') {
             alert('❌ ไม่สามารถโหลด Supabase Library ได้ กรุณาตรวจสอบ Internet หรือลิงก์ Script');
         } else {
+            console.log('✅ เริ่มต้นการเชื่อมต่อ Supabase...');
+            
+            // -----------------------------------------------------------
+            // 🔧 แก้ตรงนี้: เอา URL และ Key ยาวๆ มาแปะใส่ตรงนี้โดยตรง!
+            // -----------------------------------------------------------
+            supabaseClient = window.supabase.createClient(
+                'https://celfxsflqfbxxhcndaio.supabase.co', 
+                'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlbGZ4c2ZscWZieHhoY25kYWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5MTczNjUsImV4cCI6MjA4NDQ5MzM2NX0.tFiJcElcVyg1_lPomt03enLnLwH2ZKQZU0iObO4jRm4'
+            );
             // 3. เริ่มสร้าง Client
             if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
                 console.warn('⚠️ Supabase not configured yet!');
