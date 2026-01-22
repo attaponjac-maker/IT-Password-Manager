@@ -8,9 +8,9 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Supabase JS Client -->
+    <!-- supabaseClient JS Client -->
     
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@supabaseClient/supabaseClient-js@2/dist/umd/supabaseClient.min.js"></script>
     <!-- CryptoJS for AES Encryption -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
@@ -356,18 +356,18 @@
     <!-- Configuration Warning (จะหายเมื่อ Config เสร็จ) -->
     <div id="configWarning" class="container">
         <div class="config-warning">
-            <h2>⚙️ ต้องการการตั้งค่า Supabase</h2>
+            <h2>⚙️ ต้องการการตั้งค่า supabaseClient</h2>
             <p style="margin-bottom: 15px;">
-                กรุณาแก้ไข Code ด้านล่างนี้ใน HTML file โดยใส่ข้อมูลจาก Supabase ของคุณ:
+                กรุณาแก้ไข Code ด้านล่างนี้ใน HTML file โดยใส่ข้อมูลจาก supabaseClient ของคุณ:
             </p>
             <ol style="margin-left: 20px; line-height: 2;">
                 <li>เปิดไฟล์นี้ด้วย Text Editor</li>
-                <li>หาส่วน <code>SUPABASE CONFIG</code> (บรรทัดที่ ~240)</li>
-                <li>แก้ <code>SUPABASE_URL</code> และ <code>SUPABASE_ANON_KEY</code></li>
+                <li>หาส่วน <code>supabaseClient CONFIG</code> (บรรทัดที่ ~240)</li>
+                <li>แก้ <code>supabaseClient_URL</code> และ <code>supabaseClient_ANON_KEY</code></li>
                 <li>Save แล้ว Refresh หน้านี้</li>
             </ol>
             <p style="margin-top: 15px; font-size: 13px; color: #92400e;">
-                📖 อ่าน <strong>SUPABASE_SETUP_GUIDE.md</strong> เพื่อดูวิธี Setup Supabase
+                📖 อ่าน <strong>supabaseClient_SETUP_GUIDE.md</strong> เพื่อดูวิธี Setup supabaseClient
             </p>
         </div>
     </div>
@@ -505,7 +505,7 @@
             <div class="text-center mt-20">
                 <p style="color: var(--text-light);">
                     🚧 Main application UI coming next...<br>
-                    Connected to Supabase successfully!
+                    Connected to supabaseClient successfully!
                 </p>
             </div>
         </div>
@@ -513,13 +513,13 @@
 
     <script>
         // ===================================
-        // SUPABASE CONFIG
+        // supabaseClient CONFIG
         // ===================================
-        const SUPABASE_URL = 'https://celfxsflqfbxxhcndaio.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlbGZ4c2ZscWZieHhoY25kYWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5MTczNjUsImV4cCI6MjA4NDQ5MzM2NX0.tFiJcElcVyg1_lPomt03enLnLwH2ZKQZU0iObO4jRm4';
+        const supabaseClient_URL = 'https://celfxsflqfbxxhcndaio.supabaseClient.co';
+        const supabaseClient_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlbGZ4c2ZscWZieHhoY25kYWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5MTczNjUsImV4cCI6MjA4NDQ5MzM2NX0.tFiJcElcVyg1_lPomt03enLnLwH2ZKQZU0iObO4jRm4';
         
         // ===================================
-        // Initialize Supabase Client
+        // Initialize supabaseClient Client
         // ===================================
         
         // 1. ประกาศตัวแปร Global ไว้ก่อน (อย่าเพิ่งสร้าง Client)
@@ -529,25 +529,25 @@
         let userRole = null;
 
         // 2. ตรวจสอบว่าโหลด Library สำเร็จไหม
-        if (typeof window.supabase === 'undefined') {
-            alert('❌ ไม่สามารถโหลด Supabase Library ได้ กรุณาตรวจสอบ Internet หรือลิงก์ Script');
+        if (typeof window.supabaseClient === 'undefined') {
+            alert('❌ ไม่สามารถโหลด supabaseClient Library ได้ กรุณาตรวจสอบ Internet หรือลิงก์ Script');
         } else {
-            console.log('✅ เริ่มต้นการเชื่อมต่อ Supabase...');
+            console.log('✅ เริ่มต้นการเชื่อมต่อ supabaseClient...');
             
             // -----------------------------------------------------------
             // 🔧 แก้ตรงนี้: เอา URL และ Key ยาวๆ มาแปะใส่ตรงนี้โดยตรง!
             // -----------------------------------------------------------
             supabaseClient = window.supabase.createClient(
-                'https://celfxsflqfbxxhcndaio.supabase.co', 
+                'https://celfxsflqfbxxhcndaio.supabaseClient.co', 
                 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlbGZ4c2ZscWZieHhoY25kYWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5MTczNjUsImV4cCI6MjA4NDQ5MzM2NX0.tFiJcElcVyg1_lPomt03enLnLwH2ZKQZU0iObO4jRm4'
             );
             // 3. เริ่มสร้าง Client
-            if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
-                console.warn('⚠️ Supabase not configured yet!');
+            if (supabaseClient_URL === 'YOUR_supabaseClient_URL') {
+                console.warn('⚠️ supabaseClient not configured yet!');
                 document.getElementById('configWarning').classList.remove('hidden');
             } else {
                 // สร้าง Client และเก็บลงตัวแปร global
-                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                supabaseClient = window.supabase.createClient(supabaseClient_URL, supabaseClient_ANON_KEY);
                 document.getElementById('configWarning').classList.add('hidden');
                 
                 // เริ่มทำงาน
@@ -563,7 +563,7 @@
 
             console.log('🚀 Initializing app...');
             
-            // ใช้ supabaseClient (ตัวแปรที่เราสร้างใหม่) แทน supabase เฉยๆ
+            // ใช้ supabaseClient (ตัวแปรที่เราสร้างใหม่) แทน supabaseClient เฉยๆ
             const { data: { session } } = await supabaseClient.auth.getSession();
             
             if (session) {
@@ -691,7 +691,7 @@
         // ===================================
         
         async function loadUserTeams() {
-            const { data: memberships, error } = await supabase
+            const { data: memberships, error } = await supabaseClient
                 .from('team_members')
                 .select(`
                     role,
@@ -745,7 +745,7 @@
         }
 
         async function selectTeam(teamId, role) {
-            const { data, error } = await supabase
+            const { data, error } = await supabaseClient
                 .from('teams')
                 .select('*')
                 .eq('id', teamId)
@@ -774,7 +774,7 @@
             const description = document.getElementById('teamDesc').value;
 
             // Create team
-            const { data: team, error: teamError } = await supabase
+            const { data: team, error: teamError } = await supabaseClient
                 .from('teams')
                 .insert({
                     name,
@@ -790,7 +790,7 @@
             }
 
             // Add creator as admin
-            const { error: memberError } = await supabase
+            const { error: memberError } = await supabaseClient
                 .from('team_members')
                 .insert({
                     team_id: team.id,
@@ -833,20 +833,22 @@
 
         async function loadStats() {
             // Count credentials
-            const { count: credCount } = await supabase
+            const { count: credCount } = await supabaseClient
                 .from('credentials')
                 .select('*', { count: 'exact', head: true })
                 .eq('team_id', currentTeam.id);
 
             // Count branches
-            const { count: branchCount } = await supabase
+            const { count: branchCount } = await supabaseClient
                 .from('branches')
                 .select('*', { count: 'exact', head: true })
                 .eq('team_id', currentTeam.id);
 
             // Count members
-            const { count: memberCount } = await supabase
+            // เปลี่ยนเป็น supabaseClient
+            const { data: memberships, error } = await supabaseClient
                 .from('team_members')
+                .select(...)
                 .select('*', { count: 'exact', head: true })
                 .eq('team_id', currentTeam.id);
 
@@ -854,7 +856,7 @@
             const thirtyDaysFromNow = new Date();
             thirtyDaysFromNow.setDate(thirtyDaysFromNow.getDate() + 30);
             
-            const { count: expiringCount } = await supabase
+            const { count: expiringCount } = await supabaseClient
                 .from('credentials')
                 .select('*', { count: 'exact', head: true })
                 .eq('team_id', currentTeam.id)
