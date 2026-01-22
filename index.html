@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- supabaseClient JS Client -->
-    
     <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    
     <!-- CryptoJS for AES Encryption -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
@@ -529,7 +529,8 @@
         let userRole = null;
 
         // 2. ตรวจสอบว่าโหลด Library สำเร็จไหม
-        if (typeof window.supabaseClient === 'undefined') {
+        // ต้องเช็คที่ window.supabase (ชื่อเดิมของ Library)
+        if (typeof window.supabase === 'undefined') {
             alert('❌ ไม่สามารถโหลด supabaseClient Library ได้ กรุณาตรวจสอบ Internet หรือลิงก์ Script');
         } else {
             console.log('✅ เริ่มต้นการเชื่อมต่อ supabaseClient...');
