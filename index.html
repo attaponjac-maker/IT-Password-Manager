@@ -9,8 +9,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
     <!-- Supabase JS Client -->
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
     <!-- CryptoJS for AES Encryption -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
     
@@ -513,42 +513,48 @@
 
     <script>
         // ===================================
-        // SUPABASE CONFIG - แก้ไขตรงนี้!
+        // SUPABASE CONFIG
         // ===================================
-        const SUPABASE_URL = 'https://celfxsflqfbxxhcndaio.supabaseClient.co';
+        const SUPABASE_URL = 'https://celfxsflqfbxxhcndaio.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlbGZ4c2ZscWZieHhoY25kYWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5MTczNjUsImV4cCI6MjA4NDQ5MzM2NX0.tFiJcElcVyg1_lPomt03enLnLwH2ZKQZU0iObO4jRm4';
         
-       
         // ===================================
         // Initialize Supabase Client
         // ===================================
         
-        let supabaseClient;
+        // 1. ประกาศตัวแปร Global ไว้ก่อน (อย่าเพิ่งสร้าง Client)
+        let supabaseClient = null;
         let currentUser = null;
         let currentTeam = null;
         let userRole = null;
 
-        // Check if configured
-        if (SUPABASE_URL === 'YOUR_SUPABASE_URL' || SUPABASE_ANON_KEY === 'YOUR_SUPABASE_ANON_KEY') {
-            console.warn('⚠️ Supabase not configured yet!');
-            document.getElementById('configWarning').classList.remove('hidden');
+        // 2. ตรวจสอบว่าโหลด Library สำเร็จไหม
+        if (typeof window.supabase === 'undefined') {
+            alert('❌ ไม่สามารถโหลด Supabase Library ได้ กรุณาตรวจสอบ Internet หรือลิงก์ Script');
         } else {
-            // Initialize using the library (window.supabase)
-            // เก็บค่าลงในตัวแปรชื่อใหม่ของเรา
-            supabaseClient = window.supabaseClient.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-            
-            document.getElementById('configWarning').classList.add('hidden');
-            initApp();
+            // 3. เริ่มสร้าง Client
+            if (SUPABASE_URL === 'YOUR_SUPABASE_URL') {
+                console.warn('⚠️ Supabase not configured yet!');
+                document.getElementById('configWarning').classList.remove('hidden');
+            } else {
+                // สร้าง Client และเก็บลงตัวแปร global
+                supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+                document.getElementById('configWarning').classList.add('hidden');
+                
+                // เริ่มทำงาน
+                initApp();
+            }
         }
 
         // ===================================
         // App Initialization
         // ===================================
-        
         async function initApp() {
+            if (!supabaseClient) return; // ป้องกัน Error ถ้า init ไม่สำเร็จ
+
             console.log('🚀 Initializing app...');
             
-            // Check current session
+            // ใช้ supabaseClient (ตัวแปรที่เราสร้างใหม่) แทน supabase เฉยๆ
             const { data: { session } } = await supabaseClient.auth.getSession();
             
             if (session) {
@@ -570,7 +576,6 @@
                 }
             });
 
-            // Setup forms
             setupForms();
         }
 
