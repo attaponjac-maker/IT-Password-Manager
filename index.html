@@ -517,13 +517,13 @@
         // ===================================
         const SUPABASE_URL = 'https://celfxsflqfbxxhcndaio.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImNlbGZ4c2ZscWZieHhoY25kYWlvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3Njg5MTczNjUsImV4cCI6MjA4NDQ5MzM2NX0.tFiJcElcVyg1_lPomt03enLnLwH2ZKQZU0iObO4jRm4';
-        const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+        
        
         // ===================================
         // Initialize Supabase Client
         // ===================================
         
-        let supabase;
+        let supabaseClient;
         let currentUser = null;
         let currentTeam = null;
         let userRole = null;
@@ -533,8 +533,10 @@
             console.warn('⚠️ Supabase not configured yet!');
             document.getElementById('configWarning').classList.remove('hidden');
         } else {
-            // Initialize
-            supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            // Initialize using the library (window.supabase)
+            // เก็บค่าลงในตัวแปรชื่อใหม่ของเรา
+            supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+            
             document.getElementById('configWarning').classList.add('hidden');
             initApp();
         }
