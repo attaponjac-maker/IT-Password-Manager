@@ -883,12 +883,14 @@
         // Utilities
         // ===================================
         
+// ... โค้ดส่วนอื่นๆ ...
+
         function hideAllScreens() {
             document.getElementById('authScreen').classList.add('hidden');
             document.getElementById('teamScreen').classList.add('hidden');
             document.getElementById('createTeamModal').classList.add('hidden');
             document.getElementById('mainApp').classList.add('hidden');
-        }
-    </script>
-</body>
+        }  // <--- 1. เช็คว่ามีตัวนี้ปิดฟังก์ชัน hideAllScreens ไหม
+
+    </script> </body>
 </html>
